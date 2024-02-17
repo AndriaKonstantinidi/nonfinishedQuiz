@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Serialization;
 
 namespace QuizWork
 {
@@ -103,6 +104,22 @@ namespace QuizWork
             {
                 Console.WriteLine($"Congratulations, you got {points} out of 5 points");
             }
+
+
+            string path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + @"\quizPoints.xml";
+
+            XmlSerializer serializer = new XmlSerializer(typeof(int));
+
+            serializer.Serialize(File.Create(path),$"Person got {points} in quiz");
+
+
+
+            //string path = Environment.GetFolderPath(Environment.SpecialFolder.Desktop) + @"\quiz.xml";
+
+            //XmlSerializer serializer = new XmlSerializer(typeof(string[]));
+
+            //serializer.Serialize(File.Create(path), quiz);
+
         }
     }
 }
